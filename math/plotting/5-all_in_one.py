@@ -24,11 +24,7 @@ y32 = np.exp((r3 / t32) * x3)
 
 np.random.seed(5)
 student_grades = np.random.normal(68, 15, 50)
-#Complete the following source code to plot all 5 previous graphs in one figure:
-#All axis labels and plot titles should have a font size of x-small (to fit nicely in one figure)
-#The plots should make a 3 x 2 grid
-#The last plot should take up two column widths (see below)
-#The title of the figure should be All in One
+
 plt.suptitle("All in One", fontsize='x-small')
 plt.subplot(3, 2, 1)
 plt.scatter(x1, y1, c='magenta')
