@@ -1,17 +1,20 @@
 #!/usr/bin/env python3
+"""Module for calculating matrix minors."""
+determinant = __import__('0-determinant').determinant
+
 
 def minor(matrix):
     """Calculates the minor matrix of a given square matrix.
 
     Args:
-        matrix (list of lists): The input square matrix.
+        matrix (list of lists): A square matrix.
 
     Raises:
         TypeError: If matrix is not a list of lists.
-        ValueError: If matrix is not square or is empty.
+        ValueError: If matrix is not a non-empty square matrix.
 
     Returns:
-        list of lists: The minor matrix of the input matrix.
+        list of lists: The minor matrix.
     """
     if not isinstance(matrix, list) or not all(
             isinstance(row, list) for row in matrix):
