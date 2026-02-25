@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""_summary_
-"""
+
 import numpy as np
 
 

@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
-"""_summary_
-"""
-
 
 def np_shape(matrix):
     """
-    Multiplies two matrices
+    CHECKING THE SHAPE OF A MATRIX
     """
     return matrix.shape

@@ -1,14 +1,10 @@
 #!/usr/bin/env python3
-"""_summary_
-"""
 
+""" ADDING 2D """
 
 def add_matrices2D(mat1, mat2):
-    """_summary_
+ 
 
-    Args:
-        matrix (list): _description_
-    """
     if len(mat1[0]) != len(mat2[0]):
         return None
     result = []

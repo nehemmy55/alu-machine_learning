@@ -23,7 +23,6 @@ def determinant(matrix):
 
     if n == 0:
         return 1
-    
     if any(len(row) != n for row in matrix):
         raise ValueError("matrix must be a square matrix")
 

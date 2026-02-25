@@ -1,12 +1,9 @@
 #!/usr/bin/env python3
-"""_summary_
-"""
 
+""" CONCATENATING 2D MATRICES ALONG SPECIFIED AXIS """
 
 def cat_matrices2D(mat1, mat2, axis=0):
-    """_summary_
-
-    """
+  
     if axis == 0 and len(mat1[0]) != len(mat2[0]):
         return None
     if axis == 1 and len(mat1) != len(mat2):
