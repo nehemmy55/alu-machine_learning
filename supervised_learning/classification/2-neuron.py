@@ -44,3 +44,10 @@ class Neuron:
             Getter
         '''
         return self.__A
+
+    def forward_prop(self, X):
+        '''
+            Calculates the forward propagation of the neuron
+        '''
+        self.__A = 1 / (1 + np.exp(-np.dot(self.__W, X) - self.__b))
+        return self.__A
