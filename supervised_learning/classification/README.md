@@ -1,4 +1,1 @@
-# supervised learninig 
-
-
-### Classification
+## Supervised learning
