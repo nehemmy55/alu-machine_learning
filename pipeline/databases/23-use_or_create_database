@@ -1,2 +1,2 @@
-// create and switch db
+// creates or uses the database my_db in MongoDB
 use my_db

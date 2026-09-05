@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
 """
-Insert document
+Defines function that inserts a new document in a MongoDB collection
+   based on kwargs
 """
 
 
 def insert_school(mongo_collection, **kwargs):
-    """ Insert document in a collection based on kwargs
-
-    Args:
-        mongo_collection (_type_): _description_
-    Returns: new _id
     """
-    new_id = mongo_collection.insert_one(kwargs).inserted_id
-    return new_id
+    Inserts a new document in a MongoDB collection based on kwargs
+
+    parameters:
+        kwargs: the new document to add
+
+    returns:
+        the new _id
+    """
+    document = mongo_collection.insert_one(kwargs)
+    return (document.inserted_id)

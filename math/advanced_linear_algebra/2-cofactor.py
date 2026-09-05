@@ -1,37 +1,100 @@
 #!/usr/bin/env python3
-"""Module for calculating matrix cofactors."""
-minor = __import__('1-minor').minor
+"""
+    Defines function that calculates the cofactor matrix of a matrix
+"""
 
 
 def cofactor(matrix):
-    """Calculates the cofactor matrix of a matrix.
-
-    Args:
-        matrix (list of lists): A square matrix.
-
-    Raises:
-        TypeError: If matrix is not a list of lists.
-        ValueError: If matrix is not a non-empty square matrix.
-
-    Returns:
-        list of lists: The cofactor matrix of matrix.
     """
-    if not isinstance(matrix, list) or not all(
-            isinstance(row, list) for row in matrix):
+    Calculates the cofactor matrix of a matrix
+
+    parameters:
+        matrix [list of lists]:
+            matrix whose cofactor matrix should be calculated
+
+    returns:
+        the cofactor matrix of matrix
+    """
+    if type(matrix) is not list:
         raise TypeError("matrix must be a list of lists")
-
-    n = len(matrix)
-
-    if n == 0 or any(len(row) != n for row in matrix):
-        raise ValueError("matrix must be a non-empty square matrix")
-
-    minor_matrix = minor(matrix)
+    height = len(matrix)
+    if height is 0:
+        raise TypeError("matrix must be a list of lists")
+    for row in matrix:
+        if type(row) is not list:
+            raise TypeError("matrix must be a list of lists")
+        if len(row) != height:
+            raise ValueError("matrix must be a non-empty square matrix")
+    if height is 1:
+        return [[1]]
+    multiplier = 1
     cofactor_matrix = []
-    for i in range(n):
+    for row_i in range(height):
         cofactor_row = []
-        for j in range(n):
-            cofactor_element = ((-1) ** (i + j)) * minor_matrix[i][j]
-            cofactor_row.append(cofactor_element)
+        for column_i in range(height):
+            sub_matrix = []
+            for row in range(height):
+                if row == row_i:
+                    continue
+                new_row = []
+                for column in range(height):
+                    if column == column_i:
+                        continue
+                    new_row.append(matrix[row][column])
+                sub_matrix.append(new_row)
+            cofactor_row.append(multiplier * determinant(sub_matrix))
+            multiplier *= -1
         cofactor_matrix.append(cofactor_row)
-
+        if height % 2 is 0:
+            multiplier *= -1
     return cofactor_matrix
+
+
+def determinant(matrix):
+    """
+    Calculates the determinant of a matrix
+
+    parameters:
+        matrix [list of lists]:
+            matrix whose determinant should be calculated
+
+    returns:
+        the determinant of matrix
+    """
+    if type(matrix) is not list:
+        raise TypeError("matrix must be a list of lists")
+    height = len(matrix)
+    if height is 0:
+        raise TypeError("matrix must be a list of lists")
+    for row in matrix:
+        if type(row) is not list:
+            raise TypeError("matrix must be a list of lists")
+        if len(row) is 0 and height is 1:
+            return 1
+        if len(row) != height:
+            raise ValueError("matrix must be a square matrix")
+    if height is 1:
+        return matrix[0][0]
+    if height is 2:
+        a = matrix[0][0]
+        b = matrix[0][1]
+        c = matrix[1][0]
+        d = matrix[1][1]
+        return ((a * d) - (b * c))
+    multiplier = 1
+    d = 0
+    for i in range(height):
+        element = matrix[0][i]
+        sub_matrix = []
+        for row in range(height):
+            if row == 0:
+                continue
+            new_row = []
+            for column in range(height):
+                if column == i:
+                    continue
+                new_row.append(matrix[row][column])
+            sub_matrix.append(new_row)
+        d += (element * multiplier * determinant(sub_matrix))
+        multiplier *= -1
+    return d

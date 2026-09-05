@@ -1,31 +1,40 @@
 #!/usr/bin/env python3
-""" Return list of ships"""
+"""
+    method that returns the list of ships
+    that can hold a given number of passengers:
+"""
 
 
 import requests
 
 
 def availableShips(passengerCount):
-    """ Return list of ships
+    """
+    method that returns the list of ships
+    that can hold a given number of passengers:
 
     Args:
-        passengerCount (int): number of ships
+        passengerCount (int): number of passengers
+        to be transported
+        Add pagination to the data
+    Returns:
+        list of ships that can hold the given
     """
 
-    res = requests.get('https://swapi-api.alx-tools.com/api/starships')
-
-    output = []
-    while res.status_code == 200:
-        res = res.json()
-        for ship in res['results']:
-            passengers = ship['passengers'].replace(',', '')
-            try:
-                if int(passengers) >= passengerCount:
-                    output.append(ship['name'])
-            except ValueError:
-                pass
-        try:
-            res = requests.get(res['next'])
-        except Exception:
-            break
-    return output
+    url = "https://swapi-api.alx-tools.com/api/starships/"
+    ships = []
+    while url:
+        response = requests.get(url)
+        data = response.json()
+        for ship in data["results"]:
+            if (
+                ship["passengers"] != "n/a"
+                and ship["passengers"] != "unknown"
+                and ship["passengers"] != "0"
+                and ship["passengers"] != "none"
+            ):
+                ship["passengers"] = ship["passengers"].replace(",", "")
+                if int(ship["passengers"]) >= passengerCount:
+                    ships.append(ship["name"])
+        url = data["next"]
+    return ships

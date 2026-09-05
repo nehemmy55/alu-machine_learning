@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
+'''
+    A function that adds two arrays element-wise
+'''
 
-""" ADDING 1D ARRAYS"""""
 
 def add_arrays(arr1, arr2):
-
-    if len(arr2) != len(arr1):
+    '''
+        A function that adds two arrays element-wise
+    '''
+    if len(arr1) == len(arr2):
+        return [arr1[i] + arr2[i] for i in range(len(arr1))]
+    else:
         return None
-    arr_result = []
-    for x in range(len(arr1)):
-        arr_result.append(arr1[x]+arr2[x])
-    return arr_result

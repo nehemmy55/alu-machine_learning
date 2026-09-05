@@ -1,22 +1,13 @@
 #!/usr/bin/env python3
-""" defines a function that FIND  the integral of a polynomial """
+'''
+    defines a function that calculates
+    the integral of a polynomial
+'''
 
 
 def poly_integral(poly, C=0):
     """
     calculates the integral of the given polynomial
-
-    Parameters:
-        poly (list): list of coefficients representing a polynomial
-            the index of the list represents the power of x
-            the coefficient belongs to
-        C (int): the integration constant
-
-    Returns:
-        a new list of coefficients representing the derivative
-            the returned list is as small as possible
-            if a coefficient is a whole number, it is represented by an int
-        None, if poly or C are not valid
     """
     if type(poly) is not list or len(poly) < 1:
         return None

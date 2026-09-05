@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
+'''
+    A function def cat_arrays(arr1, arr2):
+    that concatenates two arrays
+'''
 
-"""
-concatenating 1D arrays
-"""
 
 def cat_arrays(arr1, arr2):
-
-    result = []
-    for num in arr1:
-        result.append(num)
-    for number in arr2:
-        result.append(number)
-    return result
+    '''
+        A function def cat_arrays(arr1, arr2):
+        that concatenates two arrays
+    '''
+    return arr1 + arr2
